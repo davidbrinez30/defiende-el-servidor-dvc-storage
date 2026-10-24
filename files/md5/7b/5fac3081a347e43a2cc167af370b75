@@ -1,0 +1,131 @@
+{
+  "version": "v1",
+  "descripcion": "Primera solución funcional: regresión logística con log(1+x) y escalado.",
+  "experimento": "E2_logreg_log1p",
+  "familia": "regresion_logistica",
+  "mlflow": {
+    "experimento": "defiende-el-servidor",
+    "run_id": "9c11a62d87ab4109a4bff065f6e4b3e8"
+  },
+  "git": {
+    "commit_codigo_que_entreno": "68d3332cb384b80686897994b97e0d2dc0b4a740",
+    "repositorio": "https://github.com/davidbrinez30/defiende-el-servidor-unsw-nb15",
+    "tag": "v1"
+  },
+  "dvc": {
+    "dvc_original_train_md5": "e55caabaa6cd4a8f1c06a227bcfababc",
+    "dvc_original_test_md5": "e0beea40262e46168cdb81476dbc27b4",
+    "preparado_train.parquet_sha256": "a37aff7df3de8217800c1736bc4c8ad8ffa6243c93944f27d854088ba1277bd4",
+    "preparado_val.parquet_sha256": "6a3e85ad4a63017a51ce84ae8967badae7a8dba47980572731b9aab9a3936976",
+    "preparado_split_assignment.csv_sha256": "ebbfebba19427447215c648187dc32fe9b75e3fd3b06bc0f9cb6ae571992968a",
+    "prepare_outs_md5": {
+      "data/processed/split_assignment.csv": "84620a6590a34976659c4b5838afd410",
+      "data/processed/train.parquet": "7486d22a233d74fae0f038e182cc7c35",
+      "data/processed/val.parquet": "b1962c0a4bad5c513538ac486b042bfd"
+    }
+  },
+  "modelo_archivo": "modelo.skops",
+  "modelo_sha256": "1b7fc9ed8ed2e86c7ab8ea47a6c16e6d1fdee37e5bbc5c489cbf6802b1c291d3",
+  "modelo_joblib_del_run_sha256": "f100fe267dacc5995eed1a0837a92a95100c55e2b92c516fa16a91f9fefeae14",
+  "tipos_confiables_skops": [],
+  "columnas_entrada": [
+    "dur",
+    "proto",
+    "service",
+    "state",
+    "spkts",
+    "dpkts",
+    "sbytes",
+    "dbytes",
+    "rate",
+    "sttl",
+    "dttl",
+    "sload",
+    "dload",
+    "sloss",
+    "dloss",
+    "sinpkt",
+    "dinpkt",
+    "sjit",
+    "djit",
+    "swin",
+    "stcpb",
+    "dtcpb",
+    "dwin",
+    "tcprtt",
+    "synack",
+    "ackdat",
+    "smean",
+    "dmean",
+    "trans_depth",
+    "response_body_len",
+    "ct_srv_src",
+    "ct_state_ttl",
+    "ct_dst_ltm",
+    "ct_src_dport_ltm",
+    "ct_dst_sport_ltm",
+    "ct_dst_src_ltm",
+    "is_ftp_login",
+    "ct_ftp_cmd",
+    "ct_flw_http_mthd",
+    "ct_src_ltm",
+    "ct_srv_dst",
+    "is_sm_ips_ports"
+  ],
+  "excluidas_de_la_entrada": [
+    "id",
+    "attack_cat",
+    "label"
+  ],
+  "clase_positiva": "ataque (label = 1)",
+  "regla_umbral": "y_pred = 1 (ataque) si score_attack >= umbral; score_attack = probabilidad de ataque",
+  "umbral": 0.7774031096044294,
+  "semilla": 42,
+  "metricas_validacion": {
+    "filas": 35067,
+    "al_umbral": {
+      "umbral": 0.7774031096044294,
+      "recall": 0.9121380986299074,
+      "precision": 0.9749216300940439,
+      "fpr": 0.05,
+      "macro_f1": 0.9157428676059881,
+      "f1_ataque": 0.9424854427776695,
+      "accuracy": 0.9242307582627541,
+      "tp": 21770,
+      "fp": 560,
+      "fn": 2097,
+      "tn": 10640
+    },
+    "a_0.5_referencia": {
+      "umbral": 0.5,
+      "recall": 0.9751958771525537,
+      "precision": 0.9378651730668494,
+      "fpr": 0.13767857142857143,
+      "macro_f1": 0.9283395587240793,
+      "f1_ataque": 0.9561662969353381,
+      "accuracy": 0.9391450651609775,
+      "tp": 23275,
+      "fp": 1542,
+      "fn": 592,
+      "tn": 9658
+    },
+    "roc_auc": 0.9866000537203192,
+    "pr_auc": 0.9933712274010432
+  },
+  "politica_denominador_cero": "precision = 0 si no se emite ninguna alerta (TP+FP = 0); recall = 0 si no hay ataques reales (TP+FN = 0); FPR = 0 si no hay conexiones normales reales (FP+TN = 0). En validación y test ninguno de los denominadores es cero.",
+  "verificacion_conversion": {
+    "filas": 35067,
+    "diferencia_maxima_score": 0.0,
+    "nota": "skops reproduce las puntuaciones del run de MLflow"
+  },
+  "entorno": {
+    "python": "3.13.16",
+    "scikit-learn": "1.9.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "skops": "0.16.0",
+    "huggingface_hub": "2.3.0"
+  },
+  "seleccion": "fija, declarada en configs/versiones.yaml antes de los resultados"
+}

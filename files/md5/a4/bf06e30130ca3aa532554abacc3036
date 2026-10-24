@@ -1,0 +1,175 @@
+{
+  "version": "v2",
+  "descripcion": "Revisión: modelo elegido por macro-F1 en validación entre todos los experimentos con modelo real.",
+  "experimento": "E5_hist_gradient_boosting",
+  "familia": "hist_gradient_boosting",
+  "mlflow": {
+    "experimento": "defiende-el-servidor",
+    "run_id": "924822b52f714831bf054c763c5adab3"
+  },
+  "git": {
+    "commit_codigo_que_entreno": "68d3332cb384b80686897994b97e0d2dc0b4a740",
+    "repositorio": "https://github.com/davidbrinez30/defiende-el-servidor-unsw-nb15",
+    "tag": "v2"
+  },
+  "dvc": {
+    "dvc_original_train_md5": "e55caabaa6cd4a8f1c06a227bcfababc",
+    "dvc_original_test_md5": "e0beea40262e46168cdb81476dbc27b4",
+    "preparado_train.parquet_sha256": "a37aff7df3de8217800c1736bc4c8ad8ffa6243c93944f27d854088ba1277bd4",
+    "preparado_val.parquet_sha256": "6a3e85ad4a63017a51ce84ae8967badae7a8dba47980572731b9aab9a3936976",
+    "preparado_split_assignment.csv_sha256": "ebbfebba19427447215c648187dc32fe9b75e3fd3b06bc0f9cb6ae571992968a",
+    "prepare_outs_md5": {
+      "data/processed/split_assignment.csv": "84620a6590a34976659c4b5838afd410",
+      "data/processed/train.parquet": "7486d22a233d74fae0f038e182cc7c35",
+      "data/processed/val.parquet": "b1962c0a4bad5c513538ac486b042bfd"
+    }
+  },
+  "modelo_archivo": "modelo.skops",
+  "modelo_sha256": "3e4ade35db97b10a53a0193361a824a700166db35b4854891fa04488ea6b36e8",
+  "modelo_joblib_del_run_sha256": "be09963fa4689e9d2f7ffad24a217119ab90ca374973156b2fa87d982476864a",
+  "tipos_confiables_skops": [
+    "sklearn.ensemble._hist_gradient_boosting.predictor.TreePredictor"
+  ],
+  "columnas_entrada": [
+    "dur",
+    "proto",
+    "service",
+    "state",
+    "spkts",
+    "dpkts",
+    "sbytes",
+    "dbytes",
+    "rate",
+    "sttl",
+    "dttl",
+    "sload",
+    "dload",
+    "sloss",
+    "dloss",
+    "sinpkt",
+    "dinpkt",
+    "sjit",
+    "djit",
+    "swin",
+    "stcpb",
+    "dtcpb",
+    "dwin",
+    "tcprtt",
+    "synack",
+    "ackdat",
+    "smean",
+    "dmean",
+    "trans_depth",
+    "response_body_len",
+    "ct_srv_src",
+    "ct_state_ttl",
+    "ct_dst_ltm",
+    "ct_src_dport_ltm",
+    "ct_dst_sport_ltm",
+    "ct_dst_src_ltm",
+    "is_ftp_login",
+    "ct_ftp_cmd",
+    "ct_flw_http_mthd",
+    "ct_src_ltm",
+    "ct_srv_dst",
+    "is_sm_ips_ports"
+  ],
+  "excluidas_de_la_entrada": [
+    "id",
+    "attack_cat",
+    "label"
+  ],
+  "clase_positiva": "ataque (label = 1)",
+  "regla_umbral": "y_pred = 1 (ataque) si score_attack >= umbral; score_attack = probabilidad de ataque",
+  "umbral": 0.6543756842019451,
+  "semilla": 42,
+  "metricas_validacion": {
+    "filas": 35067,
+    "al_umbral": {
+      "umbral": 0.6543756842019451,
+      "recall": 0.9541626513596179,
+      "precision": 0.9759996571379591,
+      "fpr": 0.05,
+      "macro_f1": 0.9464188153034574,
+      "f1_ataque": 0.9649576271186441,
+      "accuracy": 0.9528331479738785,
+      "tp": 22773,
+      "fp": 560,
+      "fn": 1094,
+      "tn": 10640
+    },
+    "a_0.5_referencia": {
+      "umbral": 0.5,
+      "recall": 0.9761176519881007,
+      "precision": 0.9605029890744177,
+      "fpr": 0.08553571428571428,
+      "macro_f1": 0.9494153447273903,
+      "f1_ataque": 0.9682473712647023,
+      "accuracy": 0.9564262697122651,
+      "tp": 23297,
+      "fp": 958,
+      "fn": 570,
+      "tn": 10242
+    },
+    "roc_auc": 0.9935909508197212,
+    "pr_auc": 0.9969871558643412
+  },
+  "politica_denominador_cero": "precision = 0 si no se emite ninguna alerta (TP+FP = 0); recall = 0 si no hay ataques reales (TP+FN = 0); FPR = 0 si no hay conexiones normales reales (FP+TN = 0). En validación y test ninguno de los denominadores es cero.",
+  "verificacion_conversion": {
+    "filas": 35067,
+    "diferencia_maxima_score": 0.0,
+    "nota": "skops reproduce las puntuaciones del run de MLflow"
+  },
+  "entorno": {
+    "python": "3.13.16",
+    "scikit-learn": "1.9.1",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "skops": "0.16.0",
+    "huggingface_hub": "2.3.0"
+  },
+  "seleccion": "automática por macro-F1 en validación (ver evidencias/seleccion_validacion.json)",
+  "comparacion_con_v1": {
+    "recall": {
+      "v1": 0.9121380986299074,
+      "v2": 0.954162651359618,
+      "diferencia": 0.04202455272971062,
+      "efecto": "mejora"
+    },
+    "precision": {
+      "v1": 0.974921630094044,
+      "v2": 0.9759996571379592,
+      "diferencia": 0.0010780270439152417,
+      "efecto": "mejora"
+    },
+    "fpr": {
+      "v1": 0.05,
+      "v2": 0.05,
+      "diferencia": 0.0,
+      "efecto": "sin cambio"
+    },
+    "macro_f1": {
+      "v1": 0.915742867605988,
+      "v2": 0.9464188153034574,
+      "diferencia": 0.030675947697469397,
+      "efecto": "mejora"
+    },
+    "accuracy": {
+      "v1": 0.924230758262754,
+      "v2": 0.9528331479738784,
+      "diferencia": 0.028602389711124387,
+      "efecto": "mejora"
+    }
+  },
+  "costos_frente_a_v1": {
+    "tamano_modelo_bytes": {
+      "v1": 332057,
+      "v2": 2920313
+    },
+    "segundos_entrenamiento": {
+      "v1": 6.7,
+      "v2": 14.5
+    }
+  }
+}

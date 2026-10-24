@@ -1,0 +1,7 @@
+# Dependencias para cargar y usar esta versión (Python 3.13.16, probado)
+scikit-learn==1.9.1
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1
+skops==0.16.0
+huggingface_hub==2.3.0
